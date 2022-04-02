@@ -3,8 +3,10 @@ let lienzo = objCanva.getContext("2d");
 let color = "#000";
 let w = objCanva.width;
 let h = objCanva.height;
-document.addEventListener("mousemove", funcionCheck);
-
+document.addEventListener("mousemove", dibujarMov);
+document.addEventListener("mousedown", clickStart);
+var x = 0;
+var y = 0;
 
 /*
 ----------- Funciones ----------
@@ -18,9 +20,21 @@ function dibujar(xo, yo, xf, yf) {
     lienzo.closePath();
 }
 
-function funcionCheck(event) {
+function clickStart(event) {
     if (event.target.id === "spaceCanva" && event.buttons === 1){
-        console.log("dentro canva");
+        x = event.offsetX;
+        y = event.offsetY;
+    }
+    return x, y;
+}
+
+
+function dibujarMov(event) {
+    if (event.target.id === "spaceCanva" && event.buttons === 1){
+        let xf = event.offsetX;
+        let yf = event.offsetY;
+        dibujar(x, y, xf, yf);
+        return x = xf, y = yf;
     }
 }
 
