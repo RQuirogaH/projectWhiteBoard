@@ -10,7 +10,9 @@ var x = 0;
 var y = 0;
 
 document.addEventListener("mousemove", dibujarMov);
+document.addEventListener("touchmove", dibujarMov);
 document.addEventListener("mousedown", clickStart);
+document.addEventListener("touchstart", clickStart);
 objCleanButton.addEventListener("click", cleanCanva)
 
 
@@ -28,6 +30,7 @@ function dibujar(xo, yo, xf, yf, color, tamañoLinea) {
 }
 
 function clickStart(event) {
+    console.log("in");
     if (event.target.id === "spaceCanva" && event.buttons === 1){
         x = event.offsetX;
         y = event.offsetY;
@@ -38,7 +41,6 @@ function clickStart(event) {
 }
 
 function dibujarMov(event) {
-    console.log(event);
     if (event.target.id === "spaceCanva" && event.buttons === 1){
         let xf = event.offsetX;
         let yf = event.offsetY;
